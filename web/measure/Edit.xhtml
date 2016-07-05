@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMeasureTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMeasureLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{measureController.selected.id}" title="#{bundle.EditMeasureTitle_id}" required="true" requiredMessage="#{bundle.EditMeasureRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditMeasureLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{measureController.selected.name}" title="#{bundle.EditMeasureTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditMeasureLabel_unit}" for="unit" />
+                    <h:inputText id="unit" value="#{measureController.selected.unit}" title="#{bundle.EditMeasureTitle_unit}" />
+                </h:panelGrid>
+                <h:commandLink action="#{measureController.update}" value="#{bundle.EditMeasureSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMeasureViewLink}"/>
+                <br />
+                <h:commandLink action="#{measureController.prepareList}" value="#{bundle.EditMeasureShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMeasureIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

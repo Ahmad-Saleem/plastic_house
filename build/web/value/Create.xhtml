@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateValueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateValueLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{valueController.selected.id}" title="#{bundle.CreateValueTitle_id}" required="true" requiredMessage="#{bundle.CreateValueRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateValueLabel_value}" for="value" />
+                    <h:inputText id="value" value="#{valueController.selected.value}" title="#{bundle.CreateValueTitle_value}" />
+                    <h:outputLabel value="#{bundle.CreateValueLabel_threshold1}" for="threshold1" />
+                    <h:inputText id="threshold1" value="#{valueController.selected.threshold1}" title="#{bundle.CreateValueTitle_threshold1}" />
+                    <h:outputLabel value="#{bundle.CreateValueLabel_threshold2}" for="threshold2" />
+                    <h:inputText id="threshold2" value="#{valueController.selected.threshold2}" title="#{bundle.CreateValueTitle_threshold2}" />
+                    <h:outputLabel value="#{bundle.CreateValueLabel_measureID}" for="measureID" />
+                    <h:selectOneMenu id="measureID" value="#{valueController.selected.measureID}" title="#{bundle.CreateValueTitle_measureID}" required="true" requiredMessage="#{bundle.CreateValueRequiredMessage_measureID}">
+                        <f:selectItems value="#{measureController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateValueLabel_houseID}" for="houseID" />
+                    <h:selectOneMenu id="houseID" value="#{valueController.selected.houseID}" title="#{bundle.CreateValueTitle_houseID}" required="true" requiredMessage="#{bundle.CreateValueRequiredMessage_houseID}">
+                        <f:selectItems value="#{houseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{valueController.create}" value="#{bundle.CreateValueSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{valueController.prepareList}" value="#{bundle.CreateValueShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateValueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
